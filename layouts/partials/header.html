@@ -1,0 +1,12 @@
+<header>
+    {{ $header_logo := resources.Get "/tinoka_logo.svg" }}
+    <img id="logo" src="{{ $header_logo.Permalink }}" alt="">
+    <nav>
+        <menu>
+            <li><a href="/">Kezdőlap</a></li>
+            <li><a href="/events">Események</a></li>
+            <li><a href="#">Rólunk</a></li>
+            <li><a href="#">Kapcsolat</a></li>
+        </menu>
+    </nav>
+</header>

@@ -1,0 +1,115 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    list-style-type: none;
+    border: none;
+    outline: none;
+    text-align: unset;
+    text-decoration: none;
+    color: unset;
+    background-color: unset;
+    font-size: unset;
+    font-weight: unset;
+}
+
+/* VARIABLES */
+:root {
+  --bg: #f7efd4;
+  --color: #000;
+  --accent-color: #5ac874;
+  --font-size: 20px;
+
+  --sm-padding: 0.5rem;
+  --padding: 1rem;
+  --xl-padding: 5rem;
+  
+  --border-width: 0.1rem;
+  --max-content-width: 40rem;
+  --content-width: 80%;
+
+  --logo-width: 10rem;
+}
+
+/* GLOBAL STYLES */
+html {
+    font-family: 'Arial', sans-serif;
+    font-size: var(--font-size);
+}
+
+body {
+    background-color: var(--bg);
+    color: var(--color);
+    padding: var(--padding) var(--xl-padding);
+}
+
+/* HEADER */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: var(--color) var(--border-width) solid;
+    padding-bottom: var(--padding);
+    margin-bottom: var(--xl-padding);
+
+    #logo {
+        width: var(--logo-width);
+    }
+
+    menu {
+        display: flex;
+
+        li {
+            display: inline-block;
+        }
+
+        li + li::before {
+            content: "|";
+            padding: var(--sm-padding);
+        }
+    }
+}
+
+footer {
+    border-top: var(--color) var(--border-width) solid;
+    padding-top: var(--padding);
+    margin-top: var(--xl-padding);
+}
+
+a {
+    position: relative;
+    text-decoration: none;
+    color: var(--color);
+
+    &:before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: transparent;
+        z-index: -1;
+
+        box-shadow: none;
+        
+        -webkit-transform: rotate(0);
+        -moz-transform: rotate(0);
+        -o-transform: rotate(0);
+        -ms-transform: rotate(0);
+        transform: rotate(0);
+
+        transition: transform .1s ease-out;
+    }
+
+    &:hover:before {
+        box-shadow: inset 1000px 0 0 0 var(--accent-color);
+
+        -webkit-transform: rotate(-10deg);
+        -moz-transform: rotate(-10deg);
+        -o-transform: rotate(-10deg);
+        -ms-transform: rotate(-10deg);
+        transform: rotate(-10deg);
+    }
+}
