@@ -1,0 +1,37 @@
+baseURL = '/'
+locale = 'hu-HU'
+title = 'Tinóka'
+
+buildFuture = true
+buildDrafts = false
+pagination.pagerSize = 12
+
+refLinksErrorLevel = 'WARNING'
+refLinksNotFoundURL = '/'
+
+timeout = 60000
+
+rssLimit = 10
+
+enableInlineShortcodes = true
+
+[menus]
+  [[menus.main]]
+    name = 'Home'
+    pageRef = '/'
+    weight = 10
+
+  [[menus.main]]
+    name = 'Posts'
+    pageRef = '/posts'
+    weight = 20
+
+  [[menus.main]]
+    name = 'Tags'
+    pageRef = '/tags'
+    weight = 30
+
+[module]
+  [module.hugoVersion]
+    extended = false
+    min = '0.146.0'
