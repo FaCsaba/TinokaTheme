@@ -1,10 +1,10 @@
 {{ define "main" }}
-<main class="home" >
+<main class="home">
     {{ $posts := where .Site.RegularPages "Type" "in" "posts" }}
     {{ $pages := after 1 $posts.ByDate.Reverse }}
     {{ $recent := first 1 $posts.ByDate.Reverse }}
 
-    <section id="home-listing" class="grid">
+    <section class="article-list">
         {{ $paginator := .Paginate $pages }}
         {{ if not $paginator.HasPrev }}
             {{ range $recent }}

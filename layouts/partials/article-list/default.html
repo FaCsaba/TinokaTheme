@@ -1,5 +1,5 @@
 <article class="article {{ range .Params.categories }} {{ . | urlize }} {{ end }}">
-	<a href="{{.Permalink}}">
+	<a href="{{ .Permalink }}">
 		{{ $imgurl := path.Join "images" .Params.featured_image }}
 		{{ with .Resources.GetMatch $imgurl }}
 		<div class="featured-img" style="background-image: url('{{ .Permalink }}');"></div>
@@ -7,6 +7,6 @@
 		
 		<h3 class="entry-title">{{.Title}}</h3>
 		<p class="index-summary">{{.Summary}}</p>
-		<time class="published">{{.Date | time.Format ":date_long"}}</time>
+		<time datetime="{{ .Date.Format "2006-01-02" }}" class="published">{{.Date | time.Format ":date_long"}}</time>
 	</a>
 </article>

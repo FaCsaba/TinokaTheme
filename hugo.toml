@@ -15,9 +15,10 @@ rssLimit = 10
 
 enableInlineShortcodes = true
 
+disableKinds = ['taxonomy', 'category', 'term']
+
 [permalinks]
   posts = '/:year/:month/:slugorfilename/'
-  categories = '/:slug/'
 
 [menus]
   [[menus.main]]

@@ -45,7 +45,7 @@ body {
 }
 
 /* HEADER */
-header {
+header.site-header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -58,8 +58,6 @@ header {
     }
 
     menu {
-        display: flex;
-
         li {
             display: inline-block;
         }
@@ -111,5 +109,16 @@ a {
         -o-transform: rotate(-10deg);
         -ms-transform: rotate(-10deg);
         transform: rotate(-10deg);
+    }
+}
+
+.article-list {
+    list-style-type: none;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--padding);
+    time {
+        margin-top: var(--sm-padding);
     }
 }
