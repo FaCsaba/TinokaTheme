@@ -7,8 +7,12 @@
     <section class="article-list">
         {{ $posts := .Pages }}
         {{ $paginator := .Paginate $posts }}
-        {{ range $paginator.Pages }} {{ partial "article-list/default" . }} {{ end }}
+        {{ range $paginator.Pages }}
+            {{ partial "article-list/default" . }}
+        {{ end }}
     </section>
-    {{ if gt $paginator.TotalPages 1}} {{ partial "pagination" . }} {{ end }}
+    {{ if gt $paginator.TotalPages 1}}
+        {{ partial "pagination" . }}
+    {{ end }}
 </main>
 {{ end }}

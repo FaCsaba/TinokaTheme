@@ -14,20 +14,57 @@
     font-weight: unset;
 }
 
+@mixin media($breakpoint) {
+    // $breakpoint is simply a variable that can have several values
+    @if $breakpoint==desktop {
+        @media only screen and (max-width: 1350px) {
+            @content;
+        }
+    }
+    @if $breakpoint==tablet {
+        @media only screen and (max-width: 980px) {
+            @content;
+        }
+    }
+    @if $breakpoint==mobile {
+        @media only screen and (max-width: 550px) {
+            @content;
+        }
+    }
+}
+
 /* VARIABLES */
 :root {
   --bg: #f7efd4;
   --color: #000;
+  --secondary-color: #333;
   --accent-color: #5ac874;
   --font-size: 20px;
 
   --sm-padding: 0.5rem;
   --padding: 1rem;
   --xl-padding: 5rem;
+  @include media(tablet) {
+    --sm-padding: 0.25rem;
+    --padding: 0.5rem;
+    --xl-padding: 3rem;
+  }
+  @include media(mobile) {
+    --sm-padding: 0.1rem;
+    --padding: 0.25rem;
+    --xl-padding: 1rem;
+  }
   
   --border-width: 0.1rem;
   --max-content-width: 40rem;
   --content-width: 80%;
+  @include media(tablet) {
+    --content-width: 90%;
+  }
+  @include media(mobile) {
+    --content-width: 100%
+  }
+  --featured-img-height: 10rem;
 
   --logo-width: 10rem;
 }
@@ -42,6 +79,19 @@ body {
     background-color: var(--bg);
     color: var(--color);
     padding: var(--padding) var(--xl-padding);
+}
+
+$heading-scaling: 0.3;
+@for $i from 1 through 6 {
+  h#{$i} {
+    font-size: 1rem + $heading-scaling * (6 - $i);
+    @include media(tablet) {
+        font-size: 0.5rem + $heading-scaling * (6 - $i);
+    }
+    @include media(mobile) {
+        font-size: 0.3rem + $heading-scaling * (6 - $i);
+    }
+  }
 }
 
 /* HEADER */
@@ -67,6 +117,32 @@ header.site-header {
             padding: var(--sm-padding);
         }
     }
+
+    a.navigation-link {
+        position: relative;
+        text-decoration: none;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: transparent;
+            z-index: -1;
+
+            box-shadow: none;
+            transform: rotate(0);
+
+            transition: transform .1s ease-out;
+        }
+
+        &:hover:before {
+            box-shadow: inset 1000px 0 0 0 var(--accent-color);
+            transform: rotate(-10deg);
+        }
+    }
 }
 
 footer {
@@ -75,50 +151,59 @@ footer {
     margin-top: var(--xl-padding);
 }
 
-a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color);
+.article-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--xl-padding);
 
-    &:before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: transparent;
-        z-index: -1;
+    .article-list-item {
+        margin: 0 auto;
+        max-width: var(--max-content-width);
+        width: var(--content-width);
 
-        box-shadow: none;
-        
-        -webkit-transform: rotate(0);
-        -moz-transform: rotate(0);
-        -o-transform: rotate(0);
-        -ms-transform: rotate(0);
-        transform: rotate(0);
+        time {
+            font-size: 0.8em;
+            color: var(--secondary-color);
+        }
 
-        transition: transform .1s ease-out;
-    }
+        .article-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--xl-padding);
+        }
 
-    &:hover:before {
-        box-shadow: inset 1000px 0 0 0 var(--accent-color);
+        &:nth-child(even) .article-link {
+            flex-direction: row-reverse;
+        }
 
-        -webkit-transform: rotate(-10deg);
-        -moz-transform: rotate(-10deg);
-        -o-transform: rotate(-10deg);
-        -ms-transform: rotate(-10deg);
-        transform: rotate(-10deg);
+        .featured-img {
+            width: 50%;
+            height: var(--featured-img-height);
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+            mix-blend-mode: multiply;
+        }
+
+        @include media(tablet) {
+            .article-link {
+                flex-direction: column;
+            }
+
+            &:nth-child(even) .article-link {
+                flex-direction: column;
+            }
+
+            .featured-img {
+                width: 100%;
+            }
+        }
     }
 }
 
-.article-list {
-    list-style-type: none;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--padding);
-    time {
-        margin-top: var(--sm-padding);
-    }
+article {
+    margin: 0 auto;
+    max-width: var(--max-content-width);
+    width: var(--content-width);
 }

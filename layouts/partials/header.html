@@ -1,13 +1,15 @@
 <header class="site-header">
     {{ $header_logo := resources.Get "/tinoka_logo.svg" }}
-    <img id="logo" src="{{ $header_logo.Permalink }}" alt="">
+    <a href="/">
+        <img id="logo" src="{{ $header_logo.Permalink }}" alt="">
+    </a>
     <nav>
         <menu>
             <ul>
                 {{ $currentPage := . }}
                 {{ range .Site.Menus.main }}
                 <li class="{{ if $currentPage.HasMenuCurrent " main " . }}active {{ end }}">
-                    <a href="{{ .URL }}" data-nav="{{.Name | urlize}}" {{if strings.HasPrefix .URL "https" }} target="_blank" {{end}}>
+                    <a class="navigation-link" href="{{ .URL }}" data-nav="{{.Name | urlize}}" {{if strings.HasPrefix .URL "https" }} target="_blank" {{end}}>
                         <span>{{ i18n .Identifier | default .Name }}</span>
                     </a>
                 </li>

@@ -1,6 +1,6 @@
 {{ define "main" }}
 <main class="home">
-    {{ $posts := where .Site.RegularPages "Type" "in" "posts" }}
+    {{ $posts := where .Site.RegularPages "Type" "in" (slice "posts" "events") }}
     {{ $pages := after 1 $posts.ByDate.Reverse }}
     {{ $recent := first 1 $posts.ByDate.Reverse }}
 
