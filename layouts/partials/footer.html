@@ -1,3 +1,12 @@
 <footer>
-    <p>&copy; 2026 Tinoka. Minden jog fenntartva.</p>
+    <p>&copy;{{ dateFormat "2006" now }} {{ .Site.Title }}. Minden jog fenntartva.</p>
+    <script>
+    if (!window.netlifyIdentity) return;
+    window.netlifyIdentity.on("init", user => {
+        if (user) return;
+        window.netlifyIdentity.on("login", () => {
+        document.location.href = "/admin/";
+        });
+    });
+    </script>
 </footer>
