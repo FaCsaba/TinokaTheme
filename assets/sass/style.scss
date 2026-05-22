@@ -62,15 +62,12 @@
   }
   
   --border-width: 0.1rem;
-  --max-content-width: 40rem;
-  --content-width: 80%;
+  --max-content-width: 50rem;
+  --content-width: 90%;
   @include media(tablet) {
-    --content-width: 90%;
+    --content-width: 100%;
   }
-  @include media(mobile) {
-    --content-width: 100%
-  }
-  --featured-img-height: 10rem;
+  --featured-img-height: 12rem;
 
   --logo-width: 10rem;
 }
