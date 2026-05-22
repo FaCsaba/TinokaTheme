@@ -1,12 +1,13 @@
 <footer>
     <p>&copy;{{ dateFormat "2006" now }} {{ .Site.Title }}. Minden jog fenntartva.</p>
     <script>
-    if (!window.netlifyIdentity) return;
-    window.netlifyIdentity.on("init", user => {
-        if (user) return;
-        window.netlifyIdentity.on("login", () => {
-        document.location.href = "/admin/";
+    if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+            if (user) return;
+            window.netlifyIdentity.on("login", () => {
+            document.location.href = "/admin/";
+            });
         });
-    });
+    }
     </script>
 </footer>
