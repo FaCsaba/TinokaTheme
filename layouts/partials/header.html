@@ -1,7 +1,7 @@
 <header class="site-header">
     {{ $header_logo := resources.Get "/tinoka_logo.svg" }}
     <a href="/">
-        <img id="logo" src="{{ $header_logo.Permalink }}" alt="">
+        <img id="logo" src="{{ $header_logo.RelPermalink }}" alt="">
     </a>
     <nav>
         <menu>
