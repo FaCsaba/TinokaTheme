@@ -40,6 +40,12 @@
   --secondary-color: #333;
   --accent-color: #5ac874;
   --font-size: 20px;
+  @include media(tablet) {
+    --font-size: 22px;
+  }
+  @include media(mobile) {
+    --font-size: 25px;
+  }
 
   --sm-padding: 0.5rem;
   --padding: 1rem;
@@ -82,10 +88,11 @@ body {
 }
 
 $heading-scaling: 0.3;
+$heading-bottom-scaling: 0.2;
 @for $i from 1 through 6 {
   h#{$i} {
     font-size: 1rem + $heading-scaling * (6 - $i);
-    padding-bottom: 0rem + $heading-scaling * (6 - $i);
+    padding-bottom: 0rem + $heading-bottom-scaling * (6 - $i);
     @include media(tablet) {
         font-size: 0.5rem + $heading-scaling * (6 - $i);
     }
@@ -93,6 +100,10 @@ $heading-scaling: 0.3;
         font-size: 0.3rem + $heading-scaling * (6 - $i);
     }
   }
+}
+
+a:focus {
+    outline: 0.25rem solid var(--accent-color);
 }
 
 /* HEADER */
@@ -152,15 +163,24 @@ footer {
     margin-top: var(--xl-padding);
 }
 
+
+@mixin centerize() {
+    margin: 0 auto;
+    max-width: var(--max-content-width);
+    width: var(--content-width);
+}
+
+.article-list-header {
+  @include centerize();
+}
+
 .article-list {
     display: flex;
     flex-direction: column;
     gap: var(--xl-padding);
 
     .article-list-item {
-        margin: 0 auto;
-        max-width: var(--max-content-width);
-        width: var(--content-width);
+        @include centerize();
 
         time {
             font-size: 0.8em;
@@ -172,6 +192,10 @@ footer {
             align-items: center;
             justify-content: center;
             gap: var(--padding);
+
+            * {
+              flex: 1;
+            }
         }
 
         &:nth-child(even) .article-link {
@@ -179,7 +203,6 @@ footer {
         }
 
         .featured-img {
-            width: 50%;
             height: var(--featured-img-height);
             background-repeat: no-repeat;
             background-size: cover;
@@ -198,27 +221,26 @@ footer {
             }
 
             .featured-img {
+                flex: unset;
                 width: 100%;
             }
         }
     }
 }
 
-@mixin inside-article() {
-    margin: 0 auto;
-    max-width: var(--max-content-width);
-    width: var(--content-width);
-}
-
 article.main-article {
     @for $i from 1 through 6 {
       h#{$i} {
-        @include inside-article();
+        @include centerize();
       }
     }
 
+    p {
+        padding-bottom: 0rem + $heading-scaling;
+    }
+
     p:not(:has(img)) {
-        @include inside-article();
+        @include centerize();
     }
 
     img {

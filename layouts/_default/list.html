@@ -1,8 +1,8 @@
 {{ define "main" }}
 <main>
-    <header>
+    <header class="article-list-header">
         {{ with .Title }}<h1>{{ . }}</h1>{{ end }}
-        {{ with .Summary }}<p>{{ . }}</p>{{ end }}
+        {{ with .Summary }}<h2>{{ . }}</h2>{{ end }}
     </header>
     <section class="article-list">
         {{ $posts := .Pages }}

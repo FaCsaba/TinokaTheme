@@ -2,7 +2,8 @@
 	<a class="article-link" href="{{ .RelPermalink }}">
 		{{ $imgurl := path.Join "images" .Params.featured_image }}
 		{{ with .Resources.GetMatch $imgurl }}
-		<div class="featured-img" style="background-image: url('{{ .RelPermalink }}');"></div>
+			{{- $largew := .Resize "1600x webp q75" -}}
+			<div class="featured-img" style="background-image:url('{{ $largew.RelPermalink }}')"></div>
 		{{ end }}
 
 		<div class="content">
